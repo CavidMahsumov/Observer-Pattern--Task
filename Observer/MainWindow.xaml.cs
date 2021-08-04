@@ -20,16 +20,24 @@ namespace Observer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Store store { get; set; }
+        public Store store { get; set; } = new Store();
+        public CustomerwithMail customer { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            store.Customers = new List<ICustomer>();
+
         }
 
         private void AddCustomer_Click(object sender, RoutedEventArgs e)
         {
-            store.Customers = new List<ICustomer>();
-            store.Customers.Add(new )
+            store.Customers.Add(customer=new CustomerwithMail { email = EmailTxtBox.Text, ProductName = NameTxtBox.Text });
+            productListBox.Items.Add($"{customer.ProductName}   -     {customer.email}");
+        }
+
+        private void NotifyAll_Click(object sender, RoutedEventArgs e)
+        {
+            store.Notify();
         }
     }
 }
